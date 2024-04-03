@@ -1,4 +1,3 @@
-/workflows/main.yml at bb205df
 name: TruffleHog Scan1
 
 on: [push]
