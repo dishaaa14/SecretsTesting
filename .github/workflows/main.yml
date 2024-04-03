@@ -1,0 +1,21 @@
+/workflows/main.yml at bb205df
+name: TruffleHog Scan1
+
+on: [push]
+
+jobs:
+  trufflehog_scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run TruffleHog Scan
+      run: |
+        docker run gesellix/trufflehog --json https://github.com/dishaaa14/SecretsTesting.git > trufflehog_results.json
+    - name: Upload Trufflehog results
+      uses: actions/upload-artifact@v2
+      with:
+        name: trufflehog-results
+        path: trufflehog_results.json
